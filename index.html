@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Almost… 💗</title>
+
+  <!-- Pinterest-coded typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg1: #ffe6f2;
+      --bg2: #fff6fb;
+      --ink: #3b2732;
+      --muted: #6d5160;
+      --pink: #ff5fa2;
+      --pink2: #ff8fc5;
+      --glass: rgba(255, 255, 255, .55);
+      --stroke: rgba(255, 95, 162, .18);
+      --shadow: 0 25px 70px rgba(59, 39, 50, .18);
+      --shadow2: 0 12px 28px rgba(59, 39, 50, .12);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x: hidden;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(255, 95, 162, .18), transparent 60%),
+        radial-gradient(900px 700px at 85% 25%, rgba(255, 143, 197, .18), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+    }
+
+    /* subtle grain overlay (Pinterest feel) */
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+      opacity: .35;
+    }
+
+    .wrap {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px 40px;
+      position: relative;
+    }
+
+    .shell {
+      width: min(980px, 100%);
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    @media (max-width: 920px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, .7);
+      outline: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 28px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel:after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 95, 162, .18), transparent 65%);
+      top: -80px;
+      right: -70px;
+      filter: blur(2px);
+    }
+
+    .kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid rgba(255, 95, 162, .22);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .45);
+    }
+
+    .kicker .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      box-shadow: 0 0 0 4px rgba(255, 95, 162, .12);
+    }
+
+    h1 {
+      margin: 14px 0 10px;
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      font-size: clamp(30px, 4.2vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+    }
+
+    .sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 52ch;
+    }
+
+    .hint {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 14px 14px;
+      border-radius: 18px;
+      border: 1px dashed rgba(255, 95, 162, .32);
+      background: rgba(255, 255, 255, .35);
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    .hint b {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .hand {
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .ctaRow {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .btn {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+      user-select: none;
+    }
+
+    .btnPrimary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      box-shadow: 0 12px 26px rgba(255, 95, 162, .28);
+    }
+
+    .btnPrimary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btnGhost {
+      color: var(--ink);
+      background: rgba(255, 255, 255, .55);
+      border: 1px solid rgba(255, 95, 162, .22);
+    }
+
+    .btnGhost:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Right side: polaroid stack */
+    .stage {
+      position: relative;
+      height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    @media (max-width:920px) {
+      .stage {
+        height: 560px;
+      }
+    }
+
+    @media (max-width:520px) {
+      .stage {
+        height: 520px;
+      }
+    }
+
+    .stack {
+      position: relative;
+      width: min(420px, 92vw);
+      height: 520px;
+    }
+
+    .polaroid {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 100%;
+      height: 100%;
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
+      transition: transform .5s cubic-bezier(.2, .8, .2, 1), opacity .25s ease;
+      cursor: grab;
+      touch-action: none;
+      overflow: hidden;
+      border: 1px solid rgba(59, 39, 50, .10);
+    }
+
+    .polaroid:active {
+      cursor: grabbing;
+    }
+
+    .polaroid .frame {
+      position: absolute;
+      inset: 14px 14px 80px 14px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #f4f4f7;
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .caption {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255, 240, 248, .75);
+      border: 1px solid rgba(255, 95, 162, .18);
+    }
+
+    .caption .left {
+      text-align: left;
+    }
+
+    .capTitle {
+      font-weight: 700;
+      font-size: 14px;
+      margin: 0;
+      letter-spacing: -.01em;
+    }
+
+    .capSub {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .7);
+      border: 1px solid rgba(255, 95, 162, .20);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    /* 3D flip */
+    .card {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      transition: transform .6s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+    }
+
+    .back {
+      transform: rotateY(180deg);
+      background:
+        radial-gradient(800px 500px at 15% 0%, rgba(255, 95, 162, .14), transparent 60%),
+        radial-gradient(700px 500px at 90% 35%, rgba(255, 143, 197, .14), transparent 60%),
+        linear-gradient(180deg, #fff, #fff6fb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 26px;
+    }
+
+    .backInner {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      border: 1px dashed rgba(255, 95, 162, .35);
+      background: rgba(255, 255, 255, .65);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      padding: 22px;
+      text-align: left;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .55);
+    }
+
+    .noteTop {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+
+    .noteTop .heart {
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      transform: rotate(45deg);
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .noteTop .heart:before,
+    .noteTop .heart:after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: inherit;
+      border-radius: 50%;
+      top: -5px;
+      left: 0;
+    }
+
+    .noteTop .heart:after {
+      left: -5px;
+      top: 0;
+    }
+
+    .noteText {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 2.7vw, 28px);
+      line-height: 1.2;
+      margin: 0;
+      letter-spacing: -.02em;
+    }
+
+    .noteSmall {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .flipHint {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* floating hearts confetti */
+    .confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .heartConf {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      transform: rotate(45deg);
+      opacity: .9;
+      filter: blur(.1px);
+    }
+
+    .heartConf:before,
+    .heartConf:after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: inherit;
+      top: -6px;
+      left: 0;
+    }
+
+    .heartConf:after {
+      left: -6px;
+      top: 0;
+    }
+
+    /* tiny footer */
+    .footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: rgba(59, 39, 50, .55);
+    }
+
+    /* accessibility: reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+
+      .polaroid,
+      .card,
+      .btn {
+        transition: none !important;
+      }
+    }
+
+    /* === Gift Reveal Modal + Ribbon Unwrap === */
+    .revealWrap {
+      width: min(520px, 92vw);
+      margin: 0 auto;
+      padding: 22px 18px;
+      background: rgba(255, 255, 255, .65);
+      border: 1px solid rgba(255, 95, 162, .18);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(59, 39, 50, .14);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .revealTitle {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      margin: 0 0 10px;
+      letter-spacing: -.02em;
+    }
+
+    .revealSub {
+      color: var(--muted);
+      margin: 0 0 16px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 10, 15, .35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 9999;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modalCard {
+      width: min(560px, 94vw);
+      background: rgba(255, 255, 255, .82);
+      border: 1px solid rgba(255, 255, 255, .75);
+      outline: 1px solid rgba(255, 95, 162, .18);
+      border-radius: 26px;
+      box-shadow: 0 25px 80px rgba(59, 39, 50, .22);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+
+    .modalTop {
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 95, 162, .14);
+    }
+
+    .modalTop b {
+      font-size: 13px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .xBtn {
+      border: none;
+      background: rgba(255, 255, 255, .7);
+      border: 1px solid rgba(255, 95, 162, .2);
+      border-radius: 999px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    .modalBody {
+      padding: 14px 18px 18px;
+    }
+
+    .videoBox {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #f3f3f7;
+      border: 1px solid rgba(255, 95, 162, .16);
+      position: relative;
+    }
+
+    .videoBox video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .videoBox canvas {
+      display: none;
+    }
+
+    .modalBtns {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Gift with ribbon */
+    .giftStage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 14px;
+    }
+
+    .gift {
+      width: 190px;
+      height: 170px;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      transform: translateZ(0);
+    }
+
+    .gift .box {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 190px;
+      height: 120px;
+      border-radius: 22px;
+      background:
+        radial-gradient(120px 80px at 30% 30%, rgba(255, 255, 255, .55), transparent 60%),
+        linear-gradient(135deg, rgba(255, 95, 162, .95), rgba(255, 143, 197, .95));
+      box-shadow: 0 20px 50px rgba(255, 95, 162, .22);
+      border: 1px solid rgba(59, 39, 50, .10);
+    }
+
+    .gift .lid {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 18px;
+      margin: auto;
+      width: 190px;
+      height: 60px;
+      border-radius: 22px;
+      background:
+        radial-gradient(120px 80px at 30% 30%, rgba(255, 255, 255, .55), transparent 60%),
+        linear-gradient(135deg, rgba(255, 143, 197, .95), rgba(255, 95, 162, .95));
+      border: 1px solid rgba(59, 39, 50, .10);
+      transform-origin: center bottom;
+      transition: transform .65s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .ribbonV,
+    .ribbonH {
+      position: absolute;
+      background: rgba(255, 255, 255, .88);
+      border: 1px solid rgba(255, 95, 162, .18);
+      box-shadow: 0 8px 18px rgba(59, 39, 50, .08);
+    }
+
+    .ribbonV {
+      width: 22px;
+      height: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+      border-radius: 14px;
+      transition: transform .65s cubic-bezier(.2, .8, .2, 1), opacity .45s ease;
+    }
+
+    .ribbonH {
+      width: 190px;
+      height: 22px;
+      left: 0;
+      top: 78px;
+      border-radius: 14px;
+      transition: transform .65s cubic-bezier(.2, .8, .2, 1), opacity .45s ease;
+    }
+
+    .bow {
+      position: absolute;
+      left: 50%;
+      top: 6px;
+      width: 64px;
+      height: 40px;
+      transform: translateX(-50%);
+      transition: transform .65s cubic-bezier(.2, .8, .2, 1), opacity .45s ease;
+    }
+
+    .bow:before,
+    .bow:after {
+      content: "";
+      position: absolute;
+      width: 36px;
+      height: 26px;
+      border-radius: 18px 18px 18px 6px;
+      background: rgba(255, 255, 255, .88);
+      border: 1px solid rgba(255, 95, 162, .18);
+      box-shadow: 0 8px 18px rgba(59, 39, 50, .08);
+      top: 6px;
+    }
+
+    .bow:before {
+      left: 0;
+      transform: rotate(-18deg);
+    }
+
+    .bow:after {
+      right: 0;
+      transform: rotate(18deg) scaleX(-1);
+    }
+
+    /* Unwrap animation state */
+    .gift.unwrapped .ribbonV {
+      transform: translateX(-50%) translateY(-40px) rotate(-12deg);
+      opacity: 0;
+    }
+
+    .gift.unwrapped .ribbonH {
+      transform: translateY(24px) rotate(8deg);
+      opacity: 0;
+    }
+
+    .gift.unwrapped .bow {
+      transform: translateX(-50%) translateY(-28px) rotate(12deg) scale(0.9);
+      opacity: 0;
+    }
+
+    .gift.unwrapped .lid {
+      transform: translateY(-48px) rotateX(48deg);
+    }
+
+    .revealMsg {
+      margin-top: 16px;
+      padding: 18px 16px;
+      border-radius: 20px;
+      border: 1px dashed rgba(255, 95, 162, .35);
+      background: rgba(255, 255, 255, .65);
+      text-align: left;
+      display: none;
+    }
+
+    .revealMsg.show {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="confetti" id="confetti"></div>
+
+  <main class="wrap">
+    <div class="shell">
+
+      <!-- Left panel: premium copy -->
+      <section class="panel" aria-label="Message">
+        <span class="kicker"><span class="dot"></span> chapter three — still waiting</span>
+
+        <h1>Okay… quick question.</h1>
+        <p class="sub">
+          Do you think im <b>annoying😁</b> honestly?
+          <br><br>
+          so i made you this small slideshow❤️ <b>flip</b> each one to see what I wrote on the back.
+          <br><br>
+          (i hope its not that cuteee😂)
+        </p>
+
+        <div class="hint">
+          <div class="hand">👉</div>
+          <div>
+            <b>How it works:</b><br>
+            Drag/swipe the photo to move to the next.<br>
+            Tap the photo to flip it (message on the back).
+          </div>
+        </div>
+
+        <div class="ctaRow">
+          <button class="btn btnPrimary" id="btnSurprise">Little surprise</button>
+          <button class="btn btnGhost" id="btnReset">Reset the drama</button>
+        </div>
+
+        <p class="footer">Made with soft pink energy 💗</p>
+      </section>
+
+      <!-- Right: polaroid swipe stack -->
+      <section class="stage" aria-label="Photo stack">
+        <div class="stack" id="stack"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Camera modal -->
+  <div class="modal" id="camModal" aria-hidden="true">
+    <div class="modalCard">
+      <div class="modalTop">
+        <b>Unlock the reveal</b>
+        <button class="xBtn" id="closeCam">✕</button>
+      </div>
+      <div class="modalBody">
+        <p class="revealSub" style="margin-top:0;">
+          Take a quick picture to unlock the gift reveal 💗
+        </p>
+
+        <div class="videoBox">
+          <video id="camVideo" autoplay playsinline></video>
+          <canvas id="camCanvas"></canvas>
+        </div>
+
+        <div class="modalBtns">
+          <button class="btn btnPrimary" id="snapBtn">📸 Take picture</button>
+          <button class="btn btnGhost" id="manualBtn">Skip (no camera)</button>
+        </div>
+
+        <p class="revealSub" style="margin:10px 0 0;">
+          (Camera works on HTTPS — GitHub Pages is perfect.)
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== EDIT THIS SECTION ======
+    const cards = [
+      {
+        img: "pic1.jpg",
+        title: "Proof you’re iconic",
+        sub: "Swipe me. But also… look at you.",
+        backTitle: "First of all…",
+        backText: "Tabasumsi kee baay’ee bareedaa dha, akkuma si ati bareeddu❤️🐝. Hin dhabini isa."
+      },
+      {
+        img: "pic2.jpg",
+        title: "This is unfair.",
+        sub: "How am I supposed to act normal?",
+        backTitle: "Second of all…",
+        backText: "That smile can make someones day,cant even count how many of my days it made❤️😁 (must be 1000 days😂). Also your gift yeah?. The timing is… strategic. 😌"
+      },
+      {
+        img: "pic3.jpg",
+        title: "Final card. Don’t panic.",
+        sub: "Swipe this one away to unlock the gift.",
+        backTitle: "Almost there…",
+        backText: "i knew it im that annoying for you to look at me like that😔? Anyways your gift is here maybe😁"
+      }
+    ];
+    // ===============================
+
+    const stackEl = document.getElementById("stack");
+    const confettiEl = document.getElementById("confetti");
+    const btnSurprise = document.getElementById("btnSurprise");
+    const btnReset = document.getElementById("btnReset");
+
+    // camera modal elements
+    const camModal = document.getElementById("camModal");
+    const closeCam = document.getElementById("closeCam");
+    const camVideo = document.getElementById("camVideo");
+    const camCanvas = document.getElementById("camCanvas");
+    const snapBtn = document.getElementById("snapBtn");
+    const manualBtn = document.getElementById("manualBtn");
+    let camStream = null;
+
+    let topIndex = 0;
+
+    function buildCard(item, idx) {
+      const polaroid = document.createElement("div");
+      polaroid.className = "polaroid";
+      polaroid.style.transform = `
+        translateY(${idx * 6}px)
+        rotate(${(idx % 2 === 0 ? -1 : 1) * (2 + idx)}deg)
+        scale(${1 - idx * 0.03})
+      `;
+      polaroid.style.zIndex = 50 - idx;
+      polaroid.dataset.index = idx;
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const front = document.createElement("div");
+      front.className = "face front";
+      front.innerHTML = `
+        <div class="frame"><img src="${item.img}" alt="photo ${idx + 1}"></div>
+        <div class="caption">
+          <div class="left">
+            <p class="capTitle">${item.title}</p>
+            <p class="capSub">${item.sub}</p>
+          </div>
+          <span class="badge">tap to flip</span>
+        </div>
+      `;
+
+      const back = document.createElement("div");
+      back.className = "face back";
+      back.innerHTML = `
+        <div class="backInner">
+          <div class="noteTop"><span class="heart"></span> message on the back</div>
+          <p class="noteText">${item.backTitle}</p>
+          <p class="noteSmall">${item.backText}</p>
+          <div class="flipHint">↩︎ tap again to flip back</div>
+        </div>
+      `;
+
+      card.appendChild(front);
+      card.appendChild(back);
+      polaroid.appendChild(card);
+
+      // flip on tap/click (avoid accidental flip after drag)
+      polaroid.addEventListener("click", () => {
+        if (polaroid.dataset.dragging === "1") return;
+        const isFlipped = polaroid.dataset.flipped === "1";
+        polaroid.dataset.flipped = isFlipped ? "0" : "1";
+        card.style.transform = isFlipped ? "rotateY(0deg)" : "rotateY(180deg)";
+      });
+
+      attachDrag(polaroid);
+      return polaroid;
+    }
+
+    function render() {
+      stackEl.innerHTML = "";
+
+      if (topIndex >= cards.length) {
+        showGiftButton();
+        return;
+      }
+
+      const slice = cards.slice(topIndex);
+      slice.slice().reverse().forEach((item, i) => {
+        const absoluteIndex = topIndex + (slice.length - 1 - i);
+        const rel = absoluteIndex - topIndex;
+        const card = buildCard(item, rel);
+        card.style.opacity = rel === 0 ? "1" : "0.92";
+        stackEl.appendChild(card);
+      });
+    }
+
+    function attachDrag(el) {
+      let startX = 0, startY = 0, currentX = 0, currentY = 0;
+      let dragging = false;
+
+      const onDown = (x, y) => {
+        const top = getTopCard();
+        if (el !== top) return;
+        dragging = true;
+        el.dataset.dragging = "0";
+        startX = x; startY = y;
+        currentX = 0; currentY = 0;
+        el.style.transition = "none";
+      };
+
+      const onMove = (x, y) => {
+        if (!dragging) return;
+        currentX = x - startX;
+        currentY = y - startY;
+        if (Math.abs(currentX) + Math.abs(currentY) > 6) el.dataset.dragging = "1";
+        const rot = currentX * 0.04;
+        el.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${rot}deg)`;
+      };
+
+      const onUp = () => {
+        if (!dragging) return;
+        dragging = false;
+        el.style.transition = "transform .45s cubic-bezier(.2,.8,.2,1), opacity .25s ease";
+
+        if (Math.abs(currentX) > 110) {
+          const dir = currentX > 0 ? 1 : -1;
+          el.style.transform = `translate(${dir * 900}px, ${currentY}px) rotate(${dir * 18}deg)`;
+          el.style.opacity = "0";
+
+          setTimeout(() => {
+            topIndex = Math.min(topIndex + 1, cards.length);
+            render();
+          }, 220);
+        } else {
+          const idx = Number(el.dataset.index || "0");
+          el.style.transform = `
+            translateY(${idx * 6}px)
+            rotate(${(idx % 2 === 0 ? -1 : 1) * (2 + idx)}deg)
+            scale(${1 - idx * 0.03})
+          `;
+        }
+      };
+
+      // mouse
+      el.addEventListener("mousedown", e => onDown(e.clientX, e.clientY));
+      window.addEventListener("mousemove", e => onMove(e.clientX, e.clientY));
+      window.addEventListener("mouseup", onUp);
+
+      // touch
+      el.addEventListener("touchstart", e => {
+        const t = e.touches[0];
+        onDown(t.clientX, t.clientY);
+      }, { passive: true });
+
+      el.addEventListener("touchmove", e => {
+        const t = e.touches[0];
+        onMove(t.clientX, t.clientY);
+      }, { passive: true });
+
+      el.addEventListener("touchend", onUp);
+    }
+
+    function getTopCard() {
+      return Array.from(stackEl.querySelectorAll(".polaroid")).find(p => p.dataset.index === "0");
+    }
+
+    function popHearts(n = 24) {
+      const cx = window.innerWidth * 0.72;
+      const cy = window.innerHeight * 0.45;
+
+      for (let i = 0; i < n; i++) {
+        const h = document.createElement("div");
+        h.className = "heartConf";
+        const a = 0.75 + Math.random() * 0.25;
+        const col = Math.random() > .5 ? `rgba(255,95,162,${a})` : `rgba(255,143,197,${a})`;
+        h.style.background = col;
+        h.style.left = (cx + (Math.random() * 40 - 20)) + "px";
+        h.style.top = (cy + (Math.random() * 40 - 20)) + "px";
+
+        const dx = (Math.random() * 2 - 1) * 240;
+        const dy = - (180 + Math.random() * 240);
+        const rot = (Math.random() * 240 - 120);
+
+        h.animate([
+          { transform: `translate(0,0) rotate(45deg)`, opacity: 1 },
+          { transform: `translate(${dx}px, ${dy}px) rotate(${45 + rot}deg)`, opacity: 0 }
+        ], { duration: 1200 + Math.random() * 600, easing: "cubic-bezier(.2,.8,.2,1)" });
+
+        confettiEl.appendChild(h);
+        setTimeout(() => h.remove(), 2000);
+      }
+    }
+
+    // Little surprise: confetti + flip top card if not flipped
+    btnSurprise.addEventListener("click", () => {
+      popHearts(28);
+      const top = getTopCard();
+      if (top) {
+        const card = top.querySelector(".card");
+        const isFlipped = top.dataset.flipped === "1";
+        if (!isFlipped) {
+          top.dataset.flipped = "1";
+          card.style.transform = "rotateY(180deg)";
+        }
+      }
+    });
+
+    // Reset
+    btnReset.addEventListener("click", () => {
+      topIndex = 0;
+      render();
+      popHearts(14);
+    });
+
+    // ===== Gift reveal: camera unlock + ribbon unwrap =====
+    function stopCamera() {
+      if (camStream) {
+        camStream.getTracks().forEach(t => t.stop());
+        camStream = null;
+      }
+      camVideo.srcObject = null;
+    }
+
+    function openCameraModal() {
+      camModal.classList.add("show");
+      camModal.setAttribute("aria-hidden", "false");
+
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false })
+        .then(stream => {
+          camStream = stream;
+          camVideo.srcObject = stream;
+        })
+        .catch(() => {
+          // Permission denied/no camera -> user can still "Skip"
+        });
+    }
+
+    function closeCameraModal() {
+      camModal.classList.remove("show");
+      camModal.setAttribute("aria-hidden", "true");
+      stopCamera();
+    }
+
+    closeCam.addEventListener("click", closeCameraModal);
+    camModal.addEventListener("click", (e) => {
+      if (e.target === camModal) closeCameraModal();
+    });
+
+    snapBtn.addEventListener("click", () => {
+      if (!camVideo.srcObject) {
+        closeCameraModal();
+        showGiftBox();
+        return;
+      }
+
+      const w = camVideo.videoWidth || 640;
+      const h = camVideo.videoHeight || 480;
+      camCanvas.width = w;
+      camCanvas.height = h;
+      camCanvas.getContext("2d").drawImage(camVideo, 0, 0, w, h);
+
+      popHearts(28);
+      closeCameraModal();
+      showGiftBox();
+    });
+
+    manualBtn.addEventListener("click", () => {
+      popHearts(16);
+      closeCameraModal();
+      showGiftBox();
+    });
+
+    function showGiftButton() {
+      stackEl.innerHTML = `
+        <div class="revealWrap" style="text-align:center; margin-top:70px;">
+          <h2 class="revealTitle">You unlocked the reveal.</h2>
+          <p class="revealSub">One last step: take a picture to unlock the gift. (It’s cute. Trust.)</p>
+          <button id="giftRevealBtn" class="btn btnPrimary">🎀 Gift Reveal</button>
+        </div>
+      `;
+
+      document.getElementById("giftRevealBtn").addEventListener("click", openCameraModal);
+    }
+
+    function showGiftBox() {
+      stackEl.innerHTML = `
+        <div class="revealWrap" style="text-align:center; margin-top:50px;">
+          <h2 class="revealTitle">Okay… open it 😌</h2>
+          <p class="revealSub">Tap the gift. Watch the ribbon.</p>
+
+          <div class="giftStage">
+            <div class="gift" id="giftEl" role="button" aria-label="Open gift">
+              <div class="lid"></div>
+              <div class="bow"></div>
+              <div class="ribbonV"></div>
+              <div class="ribbonH"></div>
+              <div class="box"></div>
+            </div>
+          </div>
+
+          <div class="revealMsg" id="finalMsg">
+            <div class="noteTop"><span class="heart"></span> the truth</div>
+            <p class="noteText">You really thought it was today?</p>
+            <p class="noteSmall">
+              The gift is coming…<br><br>
+              But what I’m preparing is <b>bigger</b>. Better. Worth the wait.<br><br>
+              So yes… you still have to wait. 💗
+            </p>
+          </div>
+        </div>
+      `;
+
+      const giftEl = document.getElementById("giftEl");
+      const finalMsg = document.getElementById("finalMsg");
+
+      giftEl.addEventListener("click", () => {
+        if (giftEl.classList.contains("unwrapped")) return;
+        giftEl.classList.add("unwrapped");
+        popHearts(34);
+
+        setTimeout(() => {
+          finalMsg.classList.add("show");
+          popHearts(18);
+        }, 700);
+      });
+    }
+
+    // Initial render
+    render();
+  </script>
+</body>
+
+</html>
